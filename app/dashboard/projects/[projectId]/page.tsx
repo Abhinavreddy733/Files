@@ -72,6 +72,16 @@ export default function Page() {
     }
   };
 
+  const handleEdit = async(fileId: string) => {
+    try {
+      const res = await axios.get(`/api/fileContent?fileId=${fileId}`)
+      console.log(res.data.fileContent.content);
+      
+    }catch(error) {
+      console.error("Error in Editing the file" , error)
+    }
+  }
+
 
   return (
     <div className=" min-h-screen p-4 bg-gray-100">
@@ -147,7 +157,7 @@ export default function Page() {
       </div>
        <div className="w-full h-[55vh] overflow-scroll border border-black overflow-x-hidden p-4 mt-8">
         <div className="text-xl font-extrabold">Your Files</div>
-        <Files files={files} onDelete={handleDelete} />
+        <Files files={files} onDelete={handleDelete} onEdit={handleEdit} />
       </div>
     </div>
   );

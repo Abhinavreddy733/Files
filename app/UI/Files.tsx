@@ -23,9 +23,10 @@ interface file {
 interface FilesProps {
   files: file[];
   onDelete: (fileId: string) => void;
+  onEdit:(fileId : string) => void
 }
 
-export default function Files({ files, onDelete }: FilesProps) {
+export default function Files({ files, onDelete , onEdit }: FilesProps) {
   return (
     <Table>
       <TableHeader>
@@ -43,7 +44,7 @@ export default function Files({ files, onDelete }: FilesProps) {
             <TableCell>{file.name}</TableCell>
             <TableCell>{new Date(file.createdAt).toLocaleString()}</TableCell>
             <TableCell className="text-center flex gap-2 justify-center items-center">
-              <Button>Edit</Button>
+              <Button onClick={() => onEdit(file._id)} >Edit</Button>
               <Button onClick={() => onDelete(file._id)}>Delete</Button>
             </TableCell>
           </TableRow>
